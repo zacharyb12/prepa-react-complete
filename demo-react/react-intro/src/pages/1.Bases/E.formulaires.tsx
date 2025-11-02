@@ -212,6 +212,48 @@ function FormulairesDemo() {
 }`}
         </pre>
         </div>
+
+        <div className="card mt-3 w-75 text-center">
+            <h2>On retrouve deux types de formulaires</h2>
+            <ul>
+                <li>Les formulaires controlé</li>
+                <li>Les formulaires non controlé</li>
+            </ul>
+
+            <p>Un formulaire non-controlé consiste a recuperer les valeurs directement dans l'input </p>
+            <p>Un formulaire controlé consiste a recuperer les valeurs via des states</p>
+
+        </div>
+
+                <div className="card mt-3 w-75 text-center">
+            <h2>Les messages d'erreur</h2>
+            <div>
+                <p>Les messages d'erreur permettent d'informer l'utilisateur sur les problèmes rencontrés lors de la soumission d'un formulaire.</p>
+                <p>Ils peuvent être affichés de différentes manières, par exemple en dessous des champs de saisie concernés.</p>
+            </div>
+
+            <div>
+                <p>Pour afficher les messages d'erreur, vous pouvez utiliser un état local pour stocker les erreurs et les afficher conditionnellement dans le rendu.</p>
+                <p>La methode la plus utlisé est d'utiliser un tableau d'erreurs et de le mettre à jour lors de la soumission du formulaire.</p>
+            </div>
+            <div>
+                <p>Voici un exemple simple :</p>
+                <pre>{`
+const [errors, setErrors] = useState([]);
+function handleSubmit(e) {
+    e.preventDefault();
+    const newErrors = [];
+    if (e.target.username.value === "") {
+        newErrors.push("Le nom d'utilisateur est requis.");
+    }
+    if (e.target.password.value.length < 6) {
+        newErrors.push("Le mot de passe doit contenir au moins 6 caractères.");
+    }
+    setErrors(newErrors);
+}
+                `}</pre>
+            </div>
+        </div>
         </>
     )
 }

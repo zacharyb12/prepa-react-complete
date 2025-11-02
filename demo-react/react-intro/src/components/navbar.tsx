@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import React from "react";
 import { useState } from "react";
 
 function Navbar() {
@@ -25,6 +24,10 @@ function Navbar() {
               <li><Link to="/demo-hooks-state">Hooks & State</Link></li>
               <li><Link to="/demo-formulaires">Formulaires</Link></li>
               <li><Link to="/demo-communication">Communication</Link></li>
+              <li><Link to="/demo-hooks-effect">Hooks & Effect</Link></li>
+              <li><Link to="/demo-ajax">Ajax</Link></li>
+              <li><Link to="/demo-hooks-perso">Hooks Personnalisé</Link></li>
+              <li><Link to="/login">Login</Link></li>
         </ul>
             </>
           ) : (

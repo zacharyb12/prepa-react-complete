@@ -13,6 +13,10 @@ import FormulairesDemo from './pages/1.Bases/E.formulaires.tsx'
 import Calculatrice from './pages/4.Exo/4.calculatrice.tsx'
 import Communication from './pages/1.Bases/F.communication.tsx'
 import TodoComponent from './pages/4.Exo/5.todo-list.tsx'
+import HooksEffect from './pages/1.Bases/G.hooks-effect.tsx'
+import ComponentAjax from './pages/1.Bases/H.Ajax.tsx'
+import HooksPersoPage from './pages/1.Bases/I.hooks-perso.tsx'
+import LoginPage from './pages/1.Bases/J.loginPage.tsx'
 
 function App() {
 
@@ -28,6 +32,10 @@ function App() {
         <Route path="/demo-hooks-state" element={<HooksStateDemo />} />
         <Route path="/demo-formulaires" element={<FormulairesDemo />} />
         <Route path="/demo-communication" element={<Communication />} />
+        <Route path="/demo-hooks-effect" element={<HooksEffect />} />
+        <Route path="/demo-ajax" element={<ComponentAjax />} />
+        <Route path="/demo-hooks-perso" element={<HooksPersoPage />} />
+        <Route path="/login" element={<LoginPage />} />
 
         {/* pages Exo */}
         <Route path="/exo-creation-composant" element={<ExoCreationComposant name="John" age={30} />} />

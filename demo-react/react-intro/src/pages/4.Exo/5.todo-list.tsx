@@ -3,63 +3,105 @@ import type { TodoItem } from "./0.models/2.todo-item";
 
 function TodoComponent() {
     const [todos , setTodos] = useState<TodoItem[]>([]);
+
+    function addTodo(todo: TodoItem) {
+        const newTodo = { ...todo, id: todos.length + 1 };
+        setTodos([...todos, newTodo]);
+    }
+
+    function updateTodo(updatedTodo: TodoItem) {
+        setTodos(todos.map(todo => todo.id === updatedTodo.id ? updatedTodo : todo));
+    }
+
+    function deleteTodo(id: number) {
+        setTodos(todos.filter(todo => todo.id !== id));
+    }
 return (
     <>
     <h2>Todo List</h2>
 
-    <TodoInput onAddTodo={(todo) => setTodos([...todos, todo])} />
-    <TodoList todos={todos} />
+    <TodoInput onAddTodo={addTodo} />
+    <TodoList todos={todos} onUpdateTodo={updateTodo} onDeleteTodo={deleteTodo} />
     </>
 )
 }
 
-function TodoItem( { todo }: { todo: TodoItem } ) {
+function TodoItem( { todo, onUpdateTodo, onDeleteTodo }: { todo: TodoItem, onUpdateTodo: (todo: TodoItem) => void, onDeleteTodo: (id: number) => void } ) {
+    
+    const getPriorityColor = (priorité: string) => {
+        switch (priorité) {
+            case "Urgente": return {
+                backgroundColor: "red",
+                padding: "10px",
+                margin: "auto",
+                width : "30%",
+                borderRadius: "5px"
+            };
+            case "Normal": return {
+                backgroundColor: "orange",
+                padding: "10px",
+                margin: "auto",
+                width : "30%",
+                borderRadius: "5px"
+            };
+            case "Basse": return {
+                backgroundColor: "green",
+                padding: "10px",
+                margin: "auto",
+                width : "30%",
+                borderRadius: "5px"
+            };
+            default: return {
+                backgroundColor: "gray",
+                padding: "10px",
+                margin: "auto",
+                width : "30%",
+                borderRadius: "5px"
+            };
+        }
+    };
 
-    if(todo.priorité === "Urgente"){
-        return (
-            <div key={todo.id} style={{ border: "2px solid red", padding: "10px", margin: "10px" }}>
-                <h3>{todo.nom} (Urgente)</h3>
-                <p>Priorité: {todo.priorité}</p>
-                <p>Complet: {todo.complet ? "Oui" : "Non"}</p>
+    return (
+        <div style={getPriorityColor(todo.priorité)} >
+            <div className="bg-white w-75 m-auto text-center">
+            <h3>{todo.nom} ({todo.priorité})</h3>
+            <p>Priorité: {todo.priorité}</p>
+            <p>Complet: {todo.complet ? "Oui" : "Non"}</p>
+            <button onClick={() => onUpdateTodo({ ...todo, complet: !todo.complet })}>
+                {todo.complet ? "Marquer incomplet" : "Marquer complet"}
+            </button>
+            <button onClick={() => onDeleteTodo(todo.id)}>Supprimer</button>
             </div>
-        )
-    } else if (todo.priorité === "Normal"){
-        return (
-            <div key={todo.id} style={{ border: "2px solid orange", padding: "10px", margin: "10px" }}>
-                <h3>{todo.nom} (Normal)</h3>
-                <p>Priorité: {todo.priorité}</p>
-                <p>Complet: {todo.complet ? "Oui" : "Non"}</p>
-            </div>
-        )
-    } else {
-        return (
-            <div key={todo.id} style={{ border: "2px solid green", padding: "10px", margin: "10px" }}>
-                <h3>{todo.nom} (Basse)</h3>
-                <p>Priorité: {todo.priorité}</p>
-                <p>Complet: {todo.complet ? "Oui" : "Non"}</p>
-            </div>
-        )
-    }
-
+        </div>
+    );
 }
 
-function TodoList({ todos }: { todos: TodoItem[] }) {
+function TodoList({ todos, onUpdateTodo, onDeleteTodo }: { todos: TodoItem[], onUpdateTodo: (todo: TodoItem) => void, onDeleteTodo: (id: number) => void }) {
 return (
     <>
+    <div className="d-flex ">
         {todos.map((todo) => (
-            <TodoItem todo={todo} />
+            <TodoItem key={todo.id} todo={todo} onUpdateTodo={onUpdateTodo} onDeleteTodo={onDeleteTodo} />
         ))}
+    </div>
     </>
 )
 }
 
 function TodoInput({ onAddTodo }: { onAddTodo: (todo: TodoItem) => void }) {
-    const [todo , setTodo] = useState<TodoItem>({ id: 0, nom: "", priorité: "", complet: false });
+    const [todo , setTodo] = useState<TodoItem>({ id: 0, nom: "", priorité: "Normal", complet: false });
 
     function submitTodo(e: React.FormEvent) {
         e.preventDefault();
+        
+        // Validation
+        if (todo.nom.trim() === "") {
+            alert("Le nom est obligatoire !");
+            return;
+        }
+        
         onAddTodo(todo);
-        setTodo({ id: 0, nom: "", priorité: "", complet: false });
+        setTodo({ id: 0, nom: "", priorité: "Normal", complet: false });
     }
 
 return (
