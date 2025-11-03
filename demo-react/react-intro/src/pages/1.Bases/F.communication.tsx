@@ -157,7 +157,7 @@ function ComposantEnfant({ valeur, receptionValeur }: { valeur: string, receptio
             <div className="card w-75 m-auto text-center mt-2">
                 <h2>Enfant</h2>
                 <p>Valeur dans l'enfant : {valeur}</p>
-                <input type="text" onChange={(e) => receptionValeur(e.target.value)} />
+                <input type="text" onChange={(e: React.ChangeEvent<HTMLInputElement>) => receptionValeur(e.target.value)} />
             </div>
         </>
     )

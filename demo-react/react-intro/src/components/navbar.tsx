@@ -25,6 +25,8 @@ function Navbar() {
               <li><Link to="/demo-hooks-state">Hooks & State</Link></li>
               <li><Link to="/demo-formulaires">Formulaires</Link></li>
               <li><Link to="/demo-communication">Communication</Link></li>
+              <li><Link to="/demo-use-effect">Use Effect</Link></li>
+              <li><Link to="/demo-ajax">Ajax</Link></li>
         </ul>
             </>
           ) : (
@@ -39,6 +41,7 @@ function Navbar() {
                 <li><Link to="/exo-compteur">Exo Compteur</Link></li>
                 <li><Link to="/exo-calculatrice">Exo Calculatrice</Link></li>
                 <li><Link to="/exo-todo-list">Exo Todo List</Link></li>
+                <li><Link to="/exo-ajax-futurama">Exo Ajax Futurama</Link></li>
               </ul>
             </>
           ) : (

@@ -13,6 +13,9 @@ import FormulairesDemo from './pages/1.Bases/E.formulaires.tsx'
 import Calculatrice from './pages/4.Exo/4.calculatrice.tsx'
 import Communication from './pages/1.Bases/F.communication.tsx'
 import TodoComponent from './pages/4.Exo/5.todo-list.tsx'
+import UseEffectPage from './pages/1.Bases/G.useEffect.tsx'
+import AjaxPage from './pages/1.Bases/H.Ajax.tsx'
+import AjaxFuturama from './pages/4.Exo/6.Ajax-futurama.tsx'
 
 function App() {
 
@@ -28,6 +31,8 @@ function App() {
         <Route path="/demo-hooks-state" element={<HooksStateDemo />} />
         <Route path="/demo-formulaires" element={<FormulairesDemo />} />
         <Route path="/demo-communication" element={<Communication />} />
+        <Route path="/demo-use-effect" element={<UseEffectPage />} />
+        <Route path="/demo-ajax" element={<AjaxPage />} />
 
         {/* pages Exo */}
         <Route path="/exo-creation-composant" element={<ExoCreationComposant name="John" age={30} />} />
@@ -35,6 +40,7 @@ function App() {
         <Route path="/exo-compteur" element={<Counter />} />
         <Route path="/exo-calculatrice" element={<Calculatrice />} />
         <Route path="/exo-todo-list" element={<TodoComponent />} />
+        <Route path="/exo-ajax-futurama" element={<AjaxFuturama />} />
       </Routes>
     </Router>
   )
