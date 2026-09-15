@@ -40,7 +40,7 @@ function Communication() {
             <input type="text" onChange={(e) => changeValeur(e.target.value)} />
             <p>Valeur dans le parent : {valeur}</p>
 
-            <ComposantEnfant valeur={valeur} receptionValeur={changeValeur} />
+            <ComposantEnfant valeur={valeur} envoiValeur={changeValeur} />
 
         </>
     )
@@ -53,12 +53,12 @@ function Communication() {
                     <h2 className="text-center">Composant Enfant</h2>
                     <p className="bg-white text-center w-75 m-auto rounded p-05 mt-1">Un input qui affiche une alerte lors du changement de valeur</p>
                     <pre className="card bg-white mt-1 text-left">
-                        {`function ComposantEnfant({ valeur, receptionValeur }: { valeur: string, receptionValeur: (newValue: string) => void }) {
+                        {`function ComposantEnfant({ valeur, envoiValeur }: { valeur: string, envoiValeur: (newValue: string) => void }) {
     return (
         <>
 
             <p>Valeur dans l'enfant : {valeur}</p>
-            <input type="text" onChange={(e) => receptionValeur(e.target.value)} />
+            <input type="text" onChange={(e) => envoiValeur(e.target.value)} />
             
         </>
     )
@@ -146,18 +146,18 @@ function ComposantParent() {
                 <p>Valeur dans le parent : {valeur}</p>
             </div>
 
-            <ComposantEnfant receptionValeur={changeValeur} valeur={valeur} />
+            <ComposantEnfant envoiValeur={changeValeur} valeur={valeur} />
         </>
     )
 }
 
-function ComposantEnfant({ valeur, receptionValeur }: { valeur: string, receptionValeur: (newValue: string) => void }) {
+function ComposantEnfant({ valeur, envoiValeur }: { valeur: string, envoiValeur: (newValue: string) => void }) {
     return (
         <>
             <div className="card w-75 m-auto text-center mt-2">
                 <h2>Enfant</h2>
                 <p>Valeur dans l'enfant : {valeur}</p>
-                <input type="text" onChange={(e: React.ChangeEvent<HTMLInputElement>) => receptionValeur(e.target.value)} />
+                <input type="text" onChange={(e: React.ChangeEvent<HTMLInputElement>) => envoiValeur(e.target.value)} />
             </div>
         </>
     )

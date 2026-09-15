@@ -79,7 +79,7 @@ function TodoItem( { todo, onUpdateTodo, onDeleteTodo }: { todo: TodoItem, onUpd
 function TodoList({ todos, onUpdateTodo, onDeleteTodo }: { todos: TodoItem[], onUpdateTodo: (todo: TodoItem) => void, onDeleteTodo: (id: number) => void }) {
 return (
     <>
-    <div className="d-flex ">
+    <div className="d-flex container-todos">
         {todos.map((todo) => (
             <TodoItem key={todo.id} todo={todo} onUpdateTodo={onUpdateTodo} onDeleteTodo={onDeleteTodo} />
         ))}

@@ -344,3 +344,13 @@ ul > li{
     margin: 0.5rem 0;
     text-align: center;
 }
+
+
+/*------------------------------- Container todos -----------------------------------*/
+
+.container-todos{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
